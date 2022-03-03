@@ -9,4 +9,4 @@ Command line tool for dice rolling in Dungeons and Dragons Fifth Edition.
  - Get a final total
  - Cool graphics
 
-WHat are you waiting for? Throw away your real dice now!
+What are you waiting for? Throw away your real dice now!
