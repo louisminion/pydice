@@ -3,16 +3,25 @@ from numpy.random import default_rng
 rng = default_rng()
 print('Welcome to the dice roller!')
 print('###########################')
-with open('ascii-art_d20.txt') as art:
+with open('resources/ascii-art_d20.txt') as art:
     d20ascii = art.read()
 print(d20ascii)
+
 print('Enter a number of dice followed by the dice type to roll. \n For example, type 4d4 to roll 4 d4s or d20 to roll a d20')
 from time import sleep
 def overprint(text,repl, t=1, char=" "):
     print(text, end="\r")
     sleep(t) 
     print('\r{0:{1}<{2}}'.format(repl, char, len(text)))
-
+def load_colored_ansi(file):
+    with open(file) as f:
+        a = f.read()
+        a = a.replace('\\033[91m', '\033[91m')
+        a = a.replace('\\033[90m','\033[90m')
+        a = a.replace('\\033[97m', '\033[97m')
+        a = a.replace('\\033[96m', '\033[96m')
+    return a
+nat1 = load_colored_ansi('resources/ANSI_codes_nat1.txt')
 def overprint_mult(repls, t=1, char=''):
     for i, repl in enumerate(repls):
         sleep(t)
@@ -74,6 +83,8 @@ while True:
         result = roll_dice(dicetype)
         if result == 20 and dicetype == '20':
             print(d20ascii)
+        if result == 1 and dicetype == '20':
+            print(nat1)
         running_total += result
         print(result)
     print('Total: {}'.format(running_total))
